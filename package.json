@@ -1,0 +1,33 @@
+{
+  "name": "webpack-plugin-critical",
+  "version": "1.0.0",
+  "description": "Webpack plugin for the critical CSS inliner library.",
+  "main": "index.js",
+  "scripts": {
+    "test": "tsc && jasmine"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nrwl/webpack-plugin-critical.git"
+  },
+  "keywords": [
+    "webpack",
+    "critical"
+  ],
+  "author": "jeffbcross",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/nrwl/webpack-plugin-critical/issues"
+  },
+  "homepage": "https://github.com/nrwl/webpack-plugin-critical#readme",
+  "devDependencies": {
+    "jasmine": "^2.5.2",
+    "typescript": "^2.1.4"
+  },
+  "dependencies": {
+    "@types/jasmine": "^2.5.38",
+    "@types/node": "^6.0.53",
+    "critical": "^0.8.1",
+    "webpack-util-cleantmp": "^1.0.0"
+  }
+}
