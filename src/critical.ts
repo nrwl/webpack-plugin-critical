@@ -7,12 +7,15 @@ export interface CriticalPluginOptions {
   inline?: boolean;
   minify?: boolean;
   extract?: boolean;
-  timeout?: number
+  timeout?: number;
+  src?: string;
+  html?: string;
+  dest?: string;
 }
 
 export class CriticalPlugin {
-  constructor(public options: CriticalPluginOptions = {}) {
-    const opts = {...this.options};
+  options: CriticalPluginOptions;
+  constructor(options: CriticalPluginOptions = {}) {
     this.options = {...{
       base: '',
       inline: true,
@@ -21,7 +24,6 @@ export class CriticalPlugin {
       timeout: 30000
     }, ...options};
   }
-
 
   emit(compilation, callback) {
     const options = this.options;
@@ -37,7 +39,6 @@ export class CriticalPlugin {
       }};
 
       critical.generate(opts, (err, output) => {
-        // TODO: Make recursive and start at root of tmp
         subscription.unsubscribe();
         callback(err);
       });
@@ -45,8 +46,6 @@ export class CriticalPlugin {
   }
 
   apply(compiler) {
-    compiler.plugin("emit", (compilation, callback) => {
-      this.emit(compilation, callback);
-    });
+    compiler.plugin("emit", this.emit);
   }
 }
