@@ -21,14 +21,22 @@
   },
   "homepage": "https://github.com/nrwl/webpack-plugin-critical#readme",
   "devDependencies": {
-    "jasmine": "^2.5.2",
-    "typescript": "^2.1.4",
     "@types/jasmine": "^2.5.38",
     "@types/node": "^6.0.53",
-    "parse5": "^3.0.1"
+    "jasmine": "^2.5.2",
+    "parse5": "^3.0.1",
+    "typescript": "^2.1.4"
   },
   "dependencies": {
     "critical": "^0.8.1",
     "webpack-util-cleantmp": "^1.0.0"
-  }
+  },
+  "files": [
+    "dist/critical.js",
+    "dist/critical.js.map",
+    "dist/critical.d.ts",
+    "README.md",
+    "index.js",
+    "index.d.ts"
+  ]
 }
