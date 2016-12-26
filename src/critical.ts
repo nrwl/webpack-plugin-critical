@@ -114,7 +114,8 @@ export class CriticalPlugin {
     })
     .subscribe((tmp) => {
       const opts = {...options, ...{
-        base: resolve(tmp, options.base || '')
+        base: resolve(tmp, options.base || ''),
+        dest: resolve(tmp, options.dest)
       }};
 
       critical.generate(opts, (err, output) => {
@@ -125,6 +126,6 @@ export class CriticalPlugin {
   }
 
   apply(compiler) {
-    compiler.plugin("emit", this.emit);
+    compiler.plugin("emit", this.emit.bind(this));
   }
 }

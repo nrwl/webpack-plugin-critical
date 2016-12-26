@@ -63,7 +63,9 @@ describe('CriticalPlugin', () => {
       let plugin = new CriticalPlugin({dest: 'index.html'});
       let compiler = jasmine.createSpyObj('compiler', ['plugin']);
       plugin.apply(compiler);
-      expect(compiler.plugin).toHaveBeenCalledWith('emit', plugin.emit);
+      const args = (<jasmine.Spy>compiler.plugin).calls.first().args;
+      expect(args[0]).toBe('emit');
+      expect(typeof args[1]).toBe('function');
     });
   });
 
