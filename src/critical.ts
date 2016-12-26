@@ -18,11 +18,17 @@ export class CriticalPlugin {
   constructor(options: CriticalPluginOptions = {}) {
     this.options = {...{
       base: '',
+      src: 'index.html',
+      dest: 'index.html',
       inline: true,
       minify: true,
       extract: true,
       timeout: 30000
     }, ...options};
+
+    if (options.src && !options.dest) {
+      this.options.dest = options.src;
+    }
   }
 
   emit(compilation, callback) {

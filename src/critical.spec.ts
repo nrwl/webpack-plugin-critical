@@ -43,6 +43,8 @@ describe('CriticalPlugin', () => {
   it('should set the provided options', () => {
     const options = Object.freeze({
       base: 'src',
+      src: 'index.html',
+      dest: 'index.html',
       inline: false,
       minify: false,
       extract: false,
@@ -57,12 +59,21 @@ describe('CriticalPlugin', () => {
     const plugin = new CriticalPlugin();
     expect(plugin.options).toEqual({
       base: '',
+      src: 'index.html',
       inline: true,
       minify: true,
       extract: true,
-      timeout: 30000
+      timeout: 30000,
+      dest: 'index.html'
     });
   });
+
+  it('should set dest to same as src if no dest provided', () => {
+    const plugin = new CriticalPlugin({
+      src: 'custom-index.html'
+    });
+    expect(plugin.options.dest).toBe('custom-index.html');
+  })
 
 
   describe('apply', () => {
@@ -75,7 +86,7 @@ describe('CriticalPlugin', () => {
   });
 
   describe('emit', () => {
-    fit('should inline CSS in the document', (done) => {
+    it('should inline CSS in the document', (done) => {
       const plugin = new CriticalPlugin({
         src: 'index.html',
         dest: 'index.html'
