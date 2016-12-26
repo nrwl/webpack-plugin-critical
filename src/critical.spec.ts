@@ -54,31 +54,13 @@ describe('CriticalPlugin', () => {
     expect(plugin.options).toEqual(options);
   });
 
-
-  it('should set default options', () => {
-    const plugin = new CriticalPlugin();
-    expect(plugin.options).toEqual({
-      base: '',
-      src: 'index.html',
-      inline: true,
-      minify: true,
-      extract: true,
-      timeout: 30000,
-      dest: 'index.html'
-    });
+  it('should throw if no dest provided', () => {
+    expect(() => new CriticalPlugin({dest: undefined})).toThrow(new Error('A `dest` option is required for the Critical webpack plugin'));
   });
-
-  it('should set dest to same as src if no dest provided', () => {
-    const plugin = new CriticalPlugin({
-      src: 'custom-index.html'
-    });
-    expect(plugin.options.dest).toBe('custom-index.html');
-  })
-
 
   describe('apply', () => {
     it('should register for emit lifecycle', () => {
-      let plugin = new CriticalPlugin();
+      let plugin = new CriticalPlugin({dest: 'index.html'});
       let compiler = jasmine.createSpyObj('compiler', ['plugin']);
       plugin.apply(compiler);
       expect(compiler.plugin).toHaveBeenCalledWith('emit', plugin.emit);
@@ -89,6 +71,8 @@ describe('CriticalPlugin', () => {
     it('should inline CSS in the document', (done) => {
       const plugin = new CriticalPlugin({
         src: 'index.html',
+        inline: true,
+        minify: true,
         dest: 'index.html'
       });
       plugin.emit(mockCompilation, () => {
