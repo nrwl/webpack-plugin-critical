@@ -38,6 +38,8 @@ callback can accept the HTML or CSS output as a parameter.
 Other than `dest`, all options are the same as Critical, so please see the
 [Critical options](https://github.com/addyosmani/critical#options).
 
+To see a fully working example, check out the [integration spec](./integration).
+
 ## Why?
 
 When the browser sees this in a page:
