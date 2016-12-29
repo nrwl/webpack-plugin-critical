@@ -1,0 +1,22 @@
+language: node_js
+sudo: false
+node_js:
+- '5'
+
+cache:
+  directories:
+    - node_modules
+
+install:
+  - npm install -g yarn
+  - yarn install
+
+script:
+  - npm test
+  - ./integration.sh
+
+notifications:
+  webhooks:
+    on_success: always  # options: [always|never|change] default: always
+    on_failure: always  # options: [always|never|change] default: always
+    on_start: false     # default: false
