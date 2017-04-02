@@ -1,5 +1,5 @@
 {
-  "name": "webpack-plugin-critical",
+  "name": "@nrwl/webpack-plugin-critical",
   "version": "1.0.0",
   "description": "Webpack plugin for the critical CSS inliner library.",
   "main": "index.js",
