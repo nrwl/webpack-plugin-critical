@@ -28,7 +28,7 @@
     "typescript": "^2.1.4"
   },
   "dependencies": {
-    "critical": "^0.8.1",
+    "critical": "^1.2.2",
     "webpack-util-cleantmp": "^1.0.0"
   },
   "files": [
